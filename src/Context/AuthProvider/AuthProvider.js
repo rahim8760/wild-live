@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const providerLogin = (provider) => {
@@ -36,6 +36,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signOut(auth);
     }
+    const [emailUser, setEmailUser]=useState({})
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -54,7 +55,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     const authInfo = { 
-        user, setUser,  loading,  setLoading, providerLogin,  logOut,  updateUserProfile, verifyEmail, createUser, signIn 
+        user, setUser,  loading,  setLoading, providerLogin,  logOut, emailUser, setEmailUser,  updateUserProfile, verifyEmail, createUser, signIn 
     };
 
     return (

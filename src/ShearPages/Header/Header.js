@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserAlt } from "react-icons/fa";
 import logo from '../../logo192.png'
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 const Header = () => {
+    const {user, logOut, emailUser }=useContext(AuthContext)
+    const handleLogOut= () =>{
+        logOut()
+    }
+    const {name}=emailUser
+    console.log(emailUser)
     const menuItems=<>
         <li><Link className='font-semibold' to='/home'>Home</Link></li>
         <li><Link className='font-semibold' to='/about'>About</Link></li>
         <li><Link className='font-semibold' to='/service'>Services</Link></li>
         <li><Link className='font-semibold' to='/blog'>Blog</Link></li>
-        <li><Link className='font-semibold' to='/login'>Login</Link></li>
+        <>
+            {
+                user?.uid? 
+                <>
+
+                <li><Link className='font-semibold' to='/login' onClick={handleLogOut}>Logout</Link></li>
+                </>:
+                <>
+                <li><Link className='font-semibold' to='/login'>Login</Link></li>
+                </>
+            }
+        </>
     </>
     return (
         <div className="navbar bg-base-100">
@@ -32,6 +50,7 @@ const Header = () => {
                 <div className='flex'>
                     <img title='name' className='w-5 h-5 mr-5' src={logo} alt="Something wrong" />
                     <p className='mr-5'><FaUserAlt /></p>
+                    <p className='mr-5'>{name}</p>
                 </div>
             </div>
         </div>

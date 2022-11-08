@@ -24,13 +24,13 @@ const BannerData=[
 const HeaderServices = () => {
     return (
         <>
-            <div>
-                <h1 className='text-white text-5xl text-center font-semibold'>Update Photos</h1>
-                <h1 className='text-white text-2xl text-center font-semibold'> Here are some New and updated photos from our collections </h1>
+            <div className='my-16'>
+                <h1 className='text-white text-5xl text-center font-semibold'>Come Get Involved With Us</h1>
+                <h1 className='text-white text-2xl text-center font-semibold'> Here are some New and updated photos from our Innovations  </h1>
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 mt-5 sm:grid-cols-1 gap-5'>
                 {
-                    BannerData.map(service=><HearderService key={service.__id} service={service}></HearderService> )
+                    BannerData.map(service=><HearderService key={service._id} service={service}></HearderService> )
                 }
             </div>
             <div className='m-auto text-center mt-12'>

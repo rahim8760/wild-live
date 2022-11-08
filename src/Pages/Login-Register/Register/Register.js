@@ -6,8 +6,8 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 const Register = () => {
 
     const [error, setError] = useState('');
-    const [emailUser, setEmailUser]=useState({})
-    const { createUser } = useContext(AuthContext);
+    
+    const { createUser,setUser, emailUser, setEmailUser } = useContext(AuthContext);
     
 
 
@@ -36,6 +36,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setUser(user)
                 console.log(emailUser);
                 setError('');
                 form.reset();
