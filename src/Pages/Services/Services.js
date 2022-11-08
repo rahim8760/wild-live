@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
-    return (
-        <div>
-            <p>This is Services</p>
+    return ( <
+        div>
+            <div className='text-center my-20'>
+                <button className='btn btn-info'><Link to={'/addservice'}>Add Service</Link></button>
+            </div>
         </div>
     );
 };

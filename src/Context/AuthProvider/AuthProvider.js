@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
 
     const providerLogin = (provider) => {
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     const authInfo = { 
-        user,  loading,  setLoading, providerLogin,  logOut,  updateUserProfile, verifyEmail, createUser, signIn 
+        user, setUser,  loading,  setLoading, providerLogin,  logOut,  updateUserProfile, verifyEmail, createUser, signIn 
     };
 
     return (
