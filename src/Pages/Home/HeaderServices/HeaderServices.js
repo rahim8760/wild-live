@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import img1 from './../../../image/1.jpg';
 import img2 from './../../../image/2.jpg';
@@ -22,10 +22,18 @@ const BannerData=[
     }
 ]
 const HeaderServices = () => {
+    const [serviceData, setserviceData]=useState([]);
+
+    console.log(serviceData)
+    useEffect(()=>{
+        fetch('http://localhost:5000/service')
+        .then(res=>res.json())
+        .then(data=>setserviceData(data))
+    },[])
     return (
         <>
             <div className='my-16'>
-                <h1 className='text-white text-5xl text-center font-semibold'>Come Get Involved With Us</h1>
+                <h1 className='text-white text-5xl text-center font-semibold'>Come Get Involved With Us {serviceData.length}</h1>
                 <h1 className='text-white text-2xl text-center font-semibold'> Here are some New and updated photos from our Innovations  </h1>
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 mt-5 sm:grid-cols-1 gap-5'>

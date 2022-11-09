@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 
 const AddService = () => {
-    const [addService, setAddService]=useState({})
     const current = new Date();
     const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}/${current.toLocaleTimeString()}`
+    const [addService, setAddService]=useState({time:date})
+    
+    
     const handleSubmit=event=>{
         event.preventDefault();
-
+        const form= event.target;
+        fetch('http://localhost:5000/services',{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(addService)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            form.reset()
+        })
     }
     const handleInputBlur=event=>{
         const FieldName=event.target.name;
@@ -22,7 +36,7 @@ const AddService = () => {
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-orange-200">
                     <form onSubmit={handleSubmit} className="card-body">
-                        <h1 className="text-5xl text-white font-bold">Add Service {date}</h1>
+                        <h1 className="text-5xl text-white font-bold">Add Service</h1>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">photo Url</span>
