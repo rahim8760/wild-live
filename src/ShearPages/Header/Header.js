@@ -1,15 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserAlt } from "react-icons/fa";
-import logo from '../../logo192.png'
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import logo from '../../logo192.png'
 const Header = () => {
     const {user, logOut, emailUser }=useContext(AuthContext)
     const handleLogOut= () =>{
         logOut()
     }
-    const {name}=emailUser
-    console.log(emailUser)
     const menuItems=<>
         <li><Link className='font-semibold' to='/home'>Home</Link></li>
         <li><Link className='font-semibold' to='/about'>About</Link></li>
@@ -20,6 +18,7 @@ const Header = () => {
                 user?.uid? 
                 <>
 
+                <li><Link className='font-semibold' to='/myreviews'>My Review</Link></li>
                 <li><Link className='font-semibold' to='/login' onClick={handleLogOut}>Logout</Link></li>
                 </>:
                 <>
@@ -48,9 +47,11 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 <div className='flex'>
-                    <img title='name' className='w-5 h-5 mr-5' src={logo} alt="Something wrong" />
-                    <p className='mr-5'><FaUserAlt /></p>
-                    <p className='mr-5'>{name}</p>
+                    {
+                        user?.photoURL?<img title='name' className='w-5 h-5 mr-5' src={logo} alt="Something wrong" />:
+                        <p className='mr-5'><FaUserAlt /></p>
+                    }
+                    <p className='mr-5'>{user?.displayName}</p>
                 </div>
             </div>
         </div>

@@ -4,13 +4,12 @@ import HearderService from './HearderService';
 
 const HeaderServices = () => {
     const [serviceData, setserviceData]=useState([]);
-
-    console.log(serviceData)
     useEffect(()=>{
         fetch('http://localhost:5000/service')
         .then(res=>res.json())
         .then(data=>setserviceData(data))
     },[])
+    
     return (
         <>
             <div className='my-16'>

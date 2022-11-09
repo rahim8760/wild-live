@@ -18,7 +18,6 @@ const Register = () => {
         const photoURL = form.photoUrl.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photoURL, email, password);
         
         fetch('http://localhost:5000/users',{
             method:'POST',
@@ -36,8 +35,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                setUser(user)
-                console.log(emailUser);
+                setUser(user);
                 setError('');
                 form.reset();
                 toast.success('Please verify your email address.')
@@ -54,7 +52,6 @@ const Register = () => {
         const newUser={...emailUser};
         newUser[FieldName]=FieldValue;
         setEmailUser(newUser);
-
     }
     
     return (

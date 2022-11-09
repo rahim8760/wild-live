@@ -11,8 +11,6 @@ const Banner = () => {
         .then(data=>setBannerData(data))
     },[])
 
-    console.log(bannerData);
-
 
     return (
         <div className="carousel w-full rounded-xl mt-12">
