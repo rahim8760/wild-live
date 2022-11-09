@@ -38,7 +38,7 @@ const HeaderServices = () => {
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 mt-5 sm:grid-cols-1 gap-5'>
                 {
-                    BannerData.map(service=><HearderService key={service._id} service={service}></HearderService> )
+                    serviceData.map(service=><HearderService key={service._id} service={service}></HearderService> )
                 }
             </div>
             <div className='m-auto text-center mt-12'>

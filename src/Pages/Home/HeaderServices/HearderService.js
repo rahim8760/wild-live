@@ -3,13 +3,13 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 
 const HearderService = ({service}) => {
-    const{image}=service
+    const{photoUrl}=service
     return (
-        <div>
+        <div className='w-full h-[430px]'>
             <PhotoProvider>
-                <PhotoView src={image}>
+                <PhotoView src={photoUrl}>
 
-                <img src={image} alt="" />
+                <img src={photoUrl} alt="" className='w-full h-full'/>
                 </PhotoView>
             </PhotoProvider>
         </div>
