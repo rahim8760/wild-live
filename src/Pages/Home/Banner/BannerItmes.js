@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './bannerItems.css'
 const BannerItmes = ({slider}) => {
-    const {image, prev, id, next, rating, location, _id}=slider
+    const {image, prev, id, next, rating, location}=slider
     return (
         <div id={`slide${id}`} className="carousel-item relative w-full">
                 <div className='img_container w-full h-[800px]'>
