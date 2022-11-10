@@ -46,6 +46,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         
+        
         signIn(email, password)
             .then(result => {
                 const user = result.user;
@@ -65,6 +66,7 @@ const Login = () => {
                     console.log(data);
                     localStorage.setItem('ACC_Token',data.token)
                 })
+
 
                 setUser(user)
                 form.reset();
