@@ -5,7 +5,7 @@ import HearderService from './HearderService';
 const HeaderServices = () => {
     const [serviceData, setserviceData]=useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/service')
+        fetch('https://assignment-server-11-taupe.vercel.app/service')
         .then(res=>res.json())
         .then(data=>setserviceData(data))
     },[])

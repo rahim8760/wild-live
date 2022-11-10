@@ -14,8 +14,8 @@ const Service = ({allService}) => {
                         </h2>
                         <p>
                         {
-                            Description
-                        }
+                            Description.slice(0, 100)
+                        }...
                         </p>
                     <div className="card-actions justify-end">
                         <button className='btn btn-info'><Link to={`/singleService/${_id}`}>Read More</Link></button>

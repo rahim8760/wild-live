@@ -4,7 +4,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import logo from '../../logo192.png'
 const Header = () => {
-    const {user, logOut, emailUser }=useContext(AuthContext)
+    const {user, logOut }=useContext(AuthContext)
     const handleLogOut= () =>{
         logOut()
     }
@@ -17,8 +17,8 @@ const Header = () => {
             {
                 user?.uid? 
                 <>
+                <li><Link className='font-semibold' to='/myreviews' >My Review</Link></li>
 
-                <li><Link className='font-semibold' to='/myreviews'>My Review</Link></li>
                 <li><Link className='font-semibold' to='/login' onClick={handleLogOut}>Logout</Link></li>
                 </>:
                 <>

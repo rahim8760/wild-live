@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 import ShowServiceReview from './ShowServiceReview';
 
 const SingleService = () => {
+    useTitle('Service')
     const {user}=useContext(AuthContext)
     const [currentReview, setCurrentReview]=useState([])
     const service=useLoaderData()
@@ -14,7 +16,7 @@ const SingleService = () => {
     const [sreverReviw, setServerReviw]=useState([])
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`https://assignment-server-11-taupe.vercel.app/reviews/${_id}`)
         .then(res=>res.json())
         .then(data=>setServerReviw(data))
     },[])
@@ -23,6 +25,8 @@ const SingleService = () => {
         userEmail:user?.email,
         userdisplayName:user?.displayName,
         userphotoURL:user?.photoURL,
+        location:Location,
+        servicePhotoUrl:photoUrl,
         currentReview,
         date:date,
         serviceId:_id
@@ -31,7 +35,7 @@ const SingleService = () => {
     const handleSubmit=event=>{
 
         event.preventDefault()
-        fetch('http://localhost:5000/reviews',{
+        fetch('https://assignment-server-11-taupe.vercel.app/reviews',{
             method:'POST',
             headers:{
                 'content-type':'application/json'
@@ -85,7 +89,7 @@ const SingleService = () => {
             </form>
                 </>:<>
                     <div className='w-100 mx-auto text-center my-11'>
-                        <h1 className='text-5xl my-5'>For Review Login Hera</h1>
+                        <h1 className='text-5xl my-5'>For Review Login Here</h1>
                         <button className='btn btn-info mx-auto'><Link to={'/login'}>Login</Link></button>
                     </div>
                 </>
