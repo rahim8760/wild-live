@@ -12,6 +12,7 @@ const Login = () => {
     const googleProvider= new GoogleAuthProvider()
     const gitProvider = new GithubAuthProvider()
     const {signIn, setLoading, setUser, providerLogin, verifyEmail }=useContext(AuthContext);
+    
     const handleGithubSignIn=()=>{
         providerLogin(gitProvider)
         .then(result=>{
@@ -36,7 +37,6 @@ const Login = () => {
 
     
     const [error, setError] = useState('');
-    const { } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -45,6 +45,7 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        
         signIn(email, password)
             .then(result => {
                 const user = result.user;
@@ -53,7 +54,7 @@ const Login = () => {
                 form.reset();
                 setError('');
                 navigate(from, {replace: true});
-                toast.success(' user name or password wrong')
+                toast.success(`welcome${email}`)
             })
             .catch(error => {
                 console.error(error)

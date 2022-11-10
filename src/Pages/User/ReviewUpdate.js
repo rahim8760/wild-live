@@ -5,10 +5,14 @@ import useTitle from '../../Hooks/useTitle';
 const ReviewUpdate = () => {
     useTitle('Update Review')
     const updateReview=useLoaderData()
+
     const [currentReview, setCurrentReview]=useState([])
-    console.log(currentReview);
+    
+    // time
     const current = new Date();
     const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}/${current.toLocaleTimeString()}`
+
+    // update file
     const review={
         currentReview,
         date:date,
@@ -16,7 +20,7 @@ const ReviewUpdate = () => {
     const handleSubmit=event=>{
 
         event.preventDefault()
-        fetch(`https://assignment-server-11-taupe.vercel.app/${updateReview._id}`,{
+        fetch(`http://localhost:5000/update/${updateReview._id}`,{
             method:'PUT',
             headers:{
                 'content-type':'application/json'
@@ -26,6 +30,8 @@ const ReviewUpdate = () => {
         .then(res=>res.json())
         .then(data=>console.log(data))
     }
+    // updating file
+
     const handleChange=event=>{
         const FieldName=event.target.name;
         const FieldValue=event.target.value;

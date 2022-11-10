@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import useTitle from '../../Hooks/useTitle';
 import SingleReview from './SingleReview';
@@ -6,13 +7,30 @@ import SingleReview from './SingleReview';
 const MyReview = () => {
     useTitle('My Reviews')
     const {user}=useContext(AuthContext)
-    console.log(user);
     const[myReviews, setMyReviews]=useState([])
     useEffect(()=>{
         fetch(`https://assignment-server-11-taupe.vercel.app/user_reviews/${user.email}`)
         .then(res=>res.json())
         .then(data=>setMyReviews(data))
-    },[])
+    },[user?.email])
+    
+    const handleDelete = id=>{
+        const agree =window.confirm('you want to delete')
+        if(agree){
+            fetch(`http://localhost:5000/reviews/${id}`,{
+                method:'DELETE'
+            })
+            .then(res=>res.json())
+            .then (data=>{
+                if(data.deletedCount > 0){
+                  const remaining = myReviews.filter(r => r._id !== id);
+                  setMyReviews(remaining);
+                    toast.success('delete successfully')
+                }
+            })
+        }
+      }
+
     return (
         <div>
             <h1 className='text-center text-3xl font-semibold my-10 '>welcome {user.displayName} </h1>
@@ -39,7 +57,7 @@ const MyReview = () => {
                         <tbody>
                             
                             {
-                                myReviews.map(review=><SingleReview key={review._id} review={review}></SingleReview>)
+                                myReviews.map(review=><SingleReview key={review._id} handleDelete={handleDelete} review={review}></SingleReview>)
                             }
                         </tbody>
                     </table>

@@ -54,8 +54,8 @@ const router=createBrowserRouter([
             },
             {
                 path:'/update/:id',
-                element:<ReviewUpdate></ReviewUpdate>,
-                loader:({params})=>fetch(`https://assignment-server-11-taupe.vercel.app/${params.id}`)
+                element:<PrivetRout><ReviewUpdate></ReviewUpdate></PrivetRout>,
+                loader:({params})=>fetch(`http://localhost:5000/update/${params.id}`)
             },
             {
                 path:'/myreviews',
