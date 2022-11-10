@@ -6,8 +6,6 @@ import 'react-photo-view/dist/react-photo-view.css';
 
 const SingleReview = ({review, handleDelete}) => {
     const {date, servicePhotoUrl, location, userphotoURL, currentReview}=review
-
-  
     
     return (
         
