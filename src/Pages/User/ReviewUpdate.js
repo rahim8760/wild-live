@@ -20,7 +20,7 @@ const ReviewUpdate = () => {
     const handleSubmit=event=>{
 
         event.preventDefault()
-        fetch(`http://localhost:5000/update/${updateReview._id}`,{
+        fetch(`https://assignment-server-11-rahim8760.vercel.app/${updateReview._id}`,{
             method:'PUT',
             headers:{
                 'content-type':'application/json'
@@ -32,6 +32,8 @@ const ReviewUpdate = () => {
     }
     // updating file
 
+
+    
     const handleChange=event=>{
         const FieldName=event.target.name;
         const FieldValue=event.target.value;

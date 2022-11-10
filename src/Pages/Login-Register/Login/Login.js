@@ -49,7 +49,23 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                const currentUser={
+                    eamil:user.email
+                }
+                // JWT
+                fetch('http://localhost:5000/jwt',{
+                    method:'POST',
+                    headers:{
+                        'content-type':'application/json'
+                    },
+                    body:JSON.stringify(currentUser)
+                })
+                .then(res=>res.json())
+                .then(data=> {
+                    console.log(data);
+                    localStorage.setItem('ACC_Token',data.token)
+                })
+
                 setUser(user)
                 form.reset();
                 setError('');
